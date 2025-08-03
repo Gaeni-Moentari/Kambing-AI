@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  kambing:
+    image: registry.gaeni.org/kambing/ai:latest
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      labels:
+        - "traefik.enable=true"
+        - "traefik.docker.network=traefik-public"
+        - "traefik.constraint-label=traefik-public"
+        - "traefik.http.middlewares.https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.kambing.rule=Host(`ai.kambingku.com`)"
+        - "traefik.http.routers.kambing.entrypoints=https"
+        - "traefik.http.routers.kambing.tls=true"
+        - "traefik.http.routers.kambing.tls.certresolver=le"
+        - "traefik.http.services.kambing.loadbalancer.server.port=8501"
+    environment:
+      OPENAI_API_KEY: "${OPENAI_API_KEY}”
+      talivyapi_key: “${TAVILYAPI_KEY}”
+      groqapi_key” “${GROQAPI_KEY}"
+    networks:
+      - traefik-public
+
+networks:
+  traefik-public:
+    external: true

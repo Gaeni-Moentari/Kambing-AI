@@ -1,0 +1,9 @@
+crewai
+langchain
+langchain_chroma
+langchain_community
+langchain_openai
+llama_index
+pandas
+python-dotenv
+streamlit
