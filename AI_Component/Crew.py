@@ -18,4 +18,14 @@ class KokoaCrew:
             agents=[agent.data_search(),agent.general_answer()],
             process=Process.sequential,
             manager_llm=openai
-    )
+        )
+            
+    def ragCrew(self):
+        task = self.tasks
+        agent = self.agents
+        return Crew(
+            tasks=[task.rag_search_task(),task.general_answer_task()],
+            agents=[agent.data_search(), agent.general_answer()],
+            process=Process.sequential,
+            manager_llm=openai
+        )
