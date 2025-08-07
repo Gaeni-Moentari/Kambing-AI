@@ -19,8 +19,8 @@ services:
         - "traefik.http.services.kambing.loadbalancer.server.port=8501"
     environment:
       OPENAI_API_KEY: "${OPENAI_API_KEY}”
-      talivyapi_key: “${TAVILYAPI_KEY}”
-      groqapi_key” “${GROQAPI_KEY}"
+      talivyapi_key: "${TAVILYAPI_KEY}”
+      groqapi_key”: "${GROQAPI_KEY}"
     networks:
       - traefik-public
 
