@@ -27,4 +27,4 @@ jobs:
     - name: Deploy to Docker Swarm
       run: |
         scp docker-compose.yml ${{ secrets.USER }}@${{ secrets.HOST }}:~/kambing-deploy.yml
-        ssh ${{ secrets.USER }}@${{ secrets.HOST }} "export OPENAI_API_KEY='${{ secrets.OPENAI_API_KEY }}' && export SERPER_API_KEY='${{ secrets.SERPER_API_KEY }}' && export NEWS_API_KEY='${{ secrets.NEWS_API_KEY }}' && export WEATHER_API_KEY='${{ secrets.WEATHER_API_KEY }}' && docker stack deploy -c ~/kambing-deploy.yml aikambing"
+        ssh ${{ secrets.USER }}@${{ secrets.HOST }} "export OPENAI_API_KEY='${{ secrets.OPENAI_API_KEY }}' && export GROQAPI_KEY='${{ secrets.GROQAPI_KEY }}' && export TAVILYAPI_KEY='${{ secrets.TAVILYAPI_KEY }}' && docker stack deploy -c ~/kambing-deploy.yml aikambing"
