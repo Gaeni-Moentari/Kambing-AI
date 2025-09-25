@@ -9,8 +9,7 @@ services:
         condition: on-failure
       placement:
         constraints:
-          - "node.hostname == node"
-      
+          - "node.role == worker"
       labels:
         - "traefik.enable=true"
         - "traefik.docker.network=traefik-public"
