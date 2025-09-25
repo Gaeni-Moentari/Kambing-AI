@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   kambing:
-    image: registry.gaeni.org/kambing/ai:latest
+    image: registry.gaeni.org:5000/kambing/ai:latest
     deploy:
       replicas: 1
       restart_policy:
