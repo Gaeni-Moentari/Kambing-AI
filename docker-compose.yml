@@ -9,7 +9,7 @@ services:
         condition: on-failure
       placement:
         constraints:
-          - "node.role == worker"
+          - "node.hostname == node"
       
       labels:
         - "traefik.enable=true"
