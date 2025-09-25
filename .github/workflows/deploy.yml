@@ -21,8 +21,8 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t registry.gaeni.org:5000/kambing/ai:latest .
-        docker push registry.gaeni.org:5000/kambing/ai:latest
+        docker build -t registry.gaeni.org/kambing/ai:latest .
+        docker push registry.gaeni.org/kambing/ai:latest
 
     - name: Deploy to Docker Swarm
       run: |
