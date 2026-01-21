@@ -14,7 +14,7 @@ services:
         - "traefik.enable=true"
         - "traefik.docker.network=traefik-public"
         - "traefik.constraint-label=traefik-public"
-        - "traefik.http.routers.kambing.rule=Host(`ai.kambingku.com`)"
+        - "traefik.http.routers.kambing.rule=Host(`perikanan-ai.gaeni.org`)"
         - "traefik.http.routers.kambing.entrypoints=https"
         - "traefik.http.routers.kambing.tls=true"
         - "traefik.http.routers.kambing.tls.certresolver=le"
