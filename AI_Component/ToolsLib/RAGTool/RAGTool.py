@@ -6,7 +6,7 @@ import os
 
 load_dotenv()
 from langchain_community.tools import TavilySearchResults
-os.environ["TAVILY_API_KEY"]=os.getenv("tavilyapi_key")
+os.environ["TAVILY_API_KEY"]=os.getenv("TAVILYAPI_KEY")
 SearchTool = TavilySearchResults(k=5)
 
 CHROMA_PATH = r"./db"

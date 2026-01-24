@@ -8,8 +8,8 @@ api_key = os.getenv("OPENAI_API_KEY")
 if not api_key:
     raise ValueError("API Key tidak ditemukan. Pastikan file .env memiliki OPENAI_API_KEY yang valid.")
 
-groqapi_key = os.getenv('groqapi_key')
-if not groqapi_key:
+GROQAPI_KEY = os.getenv('GROQAPI_KEY')
+if not GROQAPI_KEY:
     raise ValueError("Groq API key tidak ditemukan")
 
 # LLMS 
@@ -28,7 +28,7 @@ openai = ChatOpenAI(
 )
 
 ##Groq
-os.environ["GROQ_API_KEY"] = groqapi_key
+os.environ["GROQ_API_KEY"] = GROQAPI_KEY
 groq = ChatOpenAI(
     openai_api_base="https://api.groq.com/openai/v1",
     openai_api_key=os.environ['GROQ_API_KEY'],

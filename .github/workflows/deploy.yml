@@ -1,30 +1,29 @@
-name: Deploy to server
+name: CI/CD Deploy
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
+  build-and-deploy:
+    runs-on: [self-hosted, Linux, X64]
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Set up SSH key
-      run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
+      - name: Build Docker image
+        run: |
+          docker build -t bandung:5000/kambingku-ai/ai:latest .
+          docker push bandung:5000/kambingku-ai/ai:latest
 
-    - name: Build Docker image
-      run: |
-        docker build -t registry.gaeni.org/kambing/ai:latest .
-        docker push registry.gaeni.org/kambing/ai:latest
+      - name: Run docker-compose
+        run: |
+          export "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" 
+          export "OPENAI_MODEL_NAME=gpt-4o" 
+          export "SERPER_API_KEY=${{ secrets.SERPER_API_KEY }}" 
+          export "TAVILYAPI_KEY=${{ secrets.TAVILYAPI_KEY }}"
+          export "GROQAPI_KEY=${{ secrets.GROQAPI_KEY }}"
 
-    - name: Deploy to Docker Swarm
-      run: |
-        scp docker-compose.yml ${{ secrets.USER }}@${{ secrets.HOST }}:~/kambing-deploy.yml
-        ssh ${{ secrets.USER }}@${{ secrets.HOST }} "export OPENAI_API_KEY='${{ secrets.OPENAI_API_KEY }}' && export GROQAPI_KEY='${{ secrets.GROQAPI_KEY }}' && export TAVILYAPI_KEY='${{ secrets.TAVILYAPI_KEY }}' && docker stack deploy -c ~/kambing-deploy.yml aikambing"
+          docker stack deploy -c docker-compose.yml kambingku-ai
