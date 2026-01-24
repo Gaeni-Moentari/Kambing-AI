@@ -15,8 +15,8 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t bandung:5000/kambingku-ai/ai:latest .
-          docker push bandung:5000/kambingku-ai/ai:latest
+          docker build -t registry.gaeni.org/kambingku-ai/ai:latest .
+          docker push registry.gaeni.org/kambingku-ai/ai:latest
 
       - name: Run docker-compose
         run: |
