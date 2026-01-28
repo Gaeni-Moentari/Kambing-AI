@@ -19,7 +19,7 @@ services:
         - "traefik.docker.network=traefik-public"
         - "traefik.constraint-label=traefik-public"
         - "traefik.http.middlewares.https-redirect.redirectscheme.scheme=https"
-        - "traefik.http.routers.kambingku.rule=Host(kambingku-ai.gaeni.org)"
+        - "traefik.http.routers.kambingku.rule=Host(`kambingku-ai.gaeni.org`)"
         - "traefik.http.routers.kambingku.entrypoints=websecure"
         - "traefik.http.routers.kambingku.tls=true"
         - "traefik.http.routers.kambingku.tls.certresolver=le"
