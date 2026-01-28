@@ -23,7 +23,7 @@ jobs:
           export "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" 
           export "OPENAI_MODEL_NAME=gpt-4o" 
           export "SERPER_API_KEY=${{ secrets.SERPER_API_KEY }}" 
-          export "TAVILYAPI_KEY=${{ secrets.TAVILYAPI_KEY }}"
+          export "TAVILY_API_KEY=${{ secrets.TAVILY_API_KEY }}"
           export "GROQ_API_KEY=${{ secrets.GROQ_API_KEY }}"
 
           docker stack deploy -c docker-compose.yml kambingku-ai
