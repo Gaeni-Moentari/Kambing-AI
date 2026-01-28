@@ -2,7 +2,7 @@ from langchain_community.tools.tavily_search import TavilySearchResults
 from crewai.tools import BaseTool
 import os 
 
-os.environ['TAVILY_API_KEY'] = os.getenv("TAVILYAPI_KEY")
+os.environ['TAVILY_API_KEY'] = os.getenv("TAVILY_API_KEY")
 
 class TavilySearch(BaseTool):
     name: str = "TavilySearch"
